@@ -1,7 +1,7 @@
 ---
-title: Set Up Your جستجوپذیر Account and Workspace
+title: "Account Setup & API Keys — Seorchable Configuration"
 sidebarTitle: Account Setup
-description: Configure your جستجوپذیر account, invite team members, set up notifications, and manage API keys for automated integrations.
+description: Configure your جستجوپذیر account settings, invite team members, set up notifications, and manage API keys for automated integrations.
 ---
 
 After creating your جستجوپذیر account, a few minutes of configuration will make your workspace faster, more secure, and ready for collaboration. This page covers profile settings, team management, API key creation, and notification preferences — everything you need before you start sharing access or building integrations against the جستجوپذیر API.
@@ -86,6 +86,76 @@ curl https://api.seorchable.com/v1/domains/example.com/visibility-summary \
   Rotate your API keys immediately if you suspect a key has been exposed. Go to **Settings → API Keys**, click the key you want to revoke, and select **Revoke Key**. Revoking a key is permanent and will break any integration still using it until you replace the key value.
 </Warning>
 
+### Example: fetch competitive analysis for a domain
+
+Retrieve how your domain's AI citation share compares to a set of competitor domains over the past 30 days:
+
+```bash
+curl https://api.seorchable.com/v1/domains/example.com/competitive-analysis \
+  --request GET \
+  --header "Authorization: Bearer YOUR_API_KEY" \
+  --header "Content-Type: application/json"
+```
+
+```json
+{
+  "domain": "example.com",
+  "period": "last_30_days",
+  "citation_share_pct": 14.3,
+  "competitors": [
+    {
+      "domain": "competitor-a.com",
+      "citation_share_pct": 22.1,
+      "delta_vs_you": "+7.8"
+    },
+    {
+      "domain": "competitor-b.com",
+      "citation_share_pct": 9.6,
+      "delta_vs_you": "-4.7"
+    }
+  ]
+}
+```
+
+### Example: fetch content optimization recommendations
+
+Pull the top actionable recommendations for a specific page to improve its AI citation rate:
+
+```bash
+curl "https://api.seorchable.com/v1/domains/example.com/pages/recommendations?url=%2Fblog%2Fai-search-guide" \
+  --request GET \
+  --header "Authorization: Bearer YOUR_API_KEY" \
+  --header "Content-Type: application/json"
+```
+
+```json
+{
+  "page_url": "/blog/ai-search-guide",
+  "current_citation_count": 312,
+  "recommendations": [
+    {
+      "type": "structured_data",
+      "priority": "high",
+      "message": "Add FAQ schema markup to capture more answer-engine slots."
+    },
+    {
+      "type": "heading_structure",
+      "priority": "medium",
+      "message": "Break the 'Overview' section into shorter H3 subsections aligned with common query patterns."
+    },
+    {
+      "type": "content_freshness",
+      "priority": "low",
+      "message": "Update statistics referenced in paragraphs 2 and 5 — LLMs down-rank stale figures."
+    }
+  ]
+}
+```
+
+<Tip>
+  Combine the visibility summary and recommendations endpoints in your CI/CD pipeline or a weekly cron job to automatically surface pages that are close to breaking into AI citations — then prioritize them in your content calendar.
+</Tip>
+
 ## Notification preferences
 
 Configure how and when جستجوپذیر alerts you to changes from **Settings → Notifications**:
@@ -100,3 +170,22 @@ To update thresholds, navigate to **Settings → Notifications**, adjust the sli
 <Note>
   If your organization requires single sign-on (SSO) via an identity provider such as Okta, Azure AD, or Google Workspace, see the [Enterprise SSO configuration guide](/solutions/enterprise) to enable SAML 2.0 or OIDC authentication for your workspace.
 </Note>
+
+## Next steps
+
+With your workspace configured, start extracting value from your AI visibility data:
+
+<CardGroup cols={2}>
+  <Card title="AEO Insights" icon="chart-bar" href="/features/aeo-insights">
+    Explore citation trends, page-level performance, and competitive benchmarks in your dashboard.
+  </Card>
+  <Card title="LLM Analytics" icon="brain" href="/features/llm-analytics">
+    Understand how individual language models rank and recommend your content across query categories.
+  </Card>
+  <Card title="MCP Protocol" icon="plug" href="/integrations/mcp-protocol">
+    Connect جستجوپذیر data directly to Claude and other AI tools via the Model Context Protocol.
+  </Card>
+  <Card title="Enterprise" icon="building" href="/solutions/enterprise">
+    Configure SSO, role-based access, and enterprise-grade security for large teams.
+  </Card>
+</CardGroup>

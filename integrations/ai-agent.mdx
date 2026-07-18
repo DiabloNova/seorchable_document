@@ -1,12 +1,14 @@
 ---
 title: Automate Analysis with the جستجوپذیر AI Agent
 sidebarTitle: AI Agent
-description: The جستجوپذیر AI Agent continuously monitors your AI search performance, surfaces key insights automatically, and sends alerts when important changes occur.
+description: The جستجوپذیر AI Agent monitors AI search performance 24/7, automatically surfaces key insights, and sends real-time alerts when rankings shift.
 ---
 
 The جستجوپذیر AI Agent is an automated analysis engine built directly into your dashboard. Once enabled, it runs in the background around the clock — scanning your AI visibility data, detecting meaningful shifts in your rankings and citations, and surfacing actionable insights without you needing to log in and check manually. Think of it as a vigilant analyst that never sleeps and never misses a change.
 
 ## What the AI Agent Does
+
+The AI Agent combines continuous monitoring with intelligent alerting so the right information reaches you at the right time:
 
 <CardGroup cols={2}>
   <Card title="Continuous Monitoring" icon="radar">
@@ -24,6 +26,8 @@ The جستجوپذیر AI Agent is an automated analysis engine built directly i
 </CardGroup>
 
 ## Enable the AI Agent
+
+Complete these steps once to activate monitoring and configure where alerts are delivered:
 
 <Steps>
   <Step title="Open AI Agent settings">
@@ -61,7 +65,7 @@ The جستجوپذیر AI Agent is an automated analysis engine built directly i
 
 ## Alert Types
 
-The AI Agent generates three categories of alerts:
+The AI Agent generates three categories of alerts that together cover the full range of meaningful changes in your AI search performance:
 
 **Ranking change alerts** notify you when a tracked keyword's AI citation position moves beyond your configured threshold — either upward (good news) or downward (action required).
 
@@ -71,7 +75,7 @@ The AI Agent generates three categories of alerts:
 
 ## Webhook Payload Format
 
-When you configure a webhook notification channel, the AI Agent posts a JSON payload to your endpoint for every alert. Use this format to build integrations with Slack (custom), PagerDuty, Zapier, or any internal tooling:
+When you configure a webhook notification channel, the AI Agent posts a JSON payload to your endpoint for every alert. Use this format to route alerts to Slack (custom apps), PagerDuty, Zapier, or any HTTP endpoint you control:
 
 ```json
 {
@@ -101,6 +105,8 @@ Respond to the webhook with HTTP `200` to acknowledge receipt. The agent retries
 
 ## FAQ
 
+Find answers to common questions about configuring and using the AI Agent below.
+
 <AccordionGroup>
   <Accordion title="How is the AI Agent different from manual dashboard checks?">
     Manual dashboard checks show you a snapshot of the moment you log in. The AI Agent monitors continuously, retains historical context, and applies statistical analysis to determine whether a change is meaningful noise or a genuine trend — then it comes to you. You avoid the cognitive overhead of deciding what to look for, and you get notified only when something genuinely warrants attention.
@@ -110,5 +116,8 @@ Respond to the webhook with HTTP `200` to acknowledge receipt. The agent retries
   </Accordion>
   <Accordion title="How do I connect the agent to Slack?">
     Go to **Settings → Integrations → Slack** and click **Connect Workspace**. Authorise جستجوپذیر in the Slack OAuth flow, then choose which channel should receive agent alerts. Once connected, return to **Settings → AI Agent** and select **Slack** as a notification channel.
+  </Accordion>
+  <Accordion title="How do I manage my API keys?">
+    Your API keys are managed from **Settings → API Keys**. You can generate new keys, assign them descriptive names, and revoke any key that is no longer in use. Revoking a key immediately disables all integrations that rely on it.
   </Accordion>
 </AccordionGroup>

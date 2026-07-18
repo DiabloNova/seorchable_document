@@ -1,12 +1,14 @@
 ---
 title: Connect جستجوپذیر to Claude via MCP Protocol
 sidebarTitle: MCP Protocol
-description: Use the Model Context Protocol (MCP) to integrate جستجوپذیر analytics data directly into Claude and other MCP-compatible AI clients for live data access.
+description: Use the Model Context Protocol to connect جستجوپذیر analytics to Claude Desktop and other MCP-compatible clients for real-time data access.
 ---
 
 The Model Context Protocol (MCP) is an open standard that lets external tools supply live data and capabilities to AI clients like Claude. By connecting جستجوپذیر through MCP, you can query your AI search analytics, pull real-time ranking data, and trigger analysis workflows directly from a Claude conversation — no copy-pasting dashboards required.
 
 ## What You Can Do with MCP
+
+Connect جستجوپذیر to your AI client to unlock these workflows from within any conversation:
 
 <CardGroup cols={2}>
   <Card title="Query Live Analytics" icon="chart-line">
@@ -28,34 +30,36 @@ The Model Context Protocol (MCP) is an open standard that lets external tools su
 Before you begin, make sure you have:
 
 - An active جستجوپذیر account
-- A جستجوپذیر API key (generated in **Account Settings → API Keys**)
-- Claude Desktop (v0.10 or later) or another MCP-compatible client installed
+- A جستجوپذیر API key (generated in **Settings → API Keys**)
+- Claude Desktop or another MCP-compatible client installed
 
 ## Set Up the MCP Integration
 
+Follow these steps to connect جستجوپذیر to Claude Desktop. The same steps apply to any MCP-compatible client — only the config file location differs.
+
 <Steps>
   <Step title="Get your API key">
-    Open your جستجوپذیر dashboard, navigate to **Account Settings → API Keys**, and click **Generate New Key**. Copy the key — you will need it in the next step.
+    Open your جستجوپذیر dashboard, navigate to **Settings → API Keys**, and click **Generate New Key**. Give the key a descriptive name such as "MCP – Claude Desktop", then copy the value immediately — it is only shown once.
   </Step>
   <Step title="Install the جستجوپذیر MCP connector">
     Run the following command in your terminal to install the connector package:
 
     ```bash
-    npx @seorchable/mcp-connector install
+    npx -y @seorchable/mcp-connector install
     ```
 
     The installer places the server binary and a default config template in `~/.seorchable/mcp/`.
   </Step>
   <Step title="Add the MCP server to your Claude Desktop config">
-    Open your Claude Desktop configuration file (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS) and add the `seorchable` entry under `mcp_servers`:
+    Open your Claude Desktop configuration file. On macOS the file is located at `~/Library/Application Support/Claude/claude_desktop_config.json`; on Windows it is at `%APPDATA%\Claude\claude_desktop_config.json`. Add the `seorchable` entry under `mcpServers`:
 
     <CodeGroup>
       ```json claude_desktop_config.json
       {
-        "mcp_servers": {
+        "mcpServers": {
           "seorchable": {
             "command": "npx",
-            "args": ["@seorchable/mcp-connector", "serve"],
+            "args": ["-y", "@seorchable/mcp-connector", "serve"],
             "env": {
               "SEORCHABLE_API_KEY": "sk_live_your_api_key_here"
             }
@@ -65,7 +69,7 @@ Before you begin, make sure you have:
       ```
     </CodeGroup>
 
-    Save the file and restart Claude Desktop.
+    Save the file and fully quit and reopen Claude Desktop so the new config takes effect.
   </Step>
   <Step title="Test the connection">
     In a new Claude conversation, type:
@@ -74,7 +78,7 @@ Before you begin, make sure you have:
     Use the Seorchable tool to show my account status.
     ```
 
-    Claude should respond with your workspace name and current tracking summary. If you see a connection error, double-check that the `SEORCHABLE_API_KEY` value is correct and that Claude Desktop has been restarted.
+    Claude should respond with your workspace name and current tracking summary. If you see a connection error, confirm that the `SEORCHABLE_API_KEY` value is correct and that you have fully restarted Claude Desktop (minimize is not enough — use Quit).
   </Step>
   <Step title="Start querying your analytics data">
     You're live. Try asking Claude natural-language questions about your AI search performance — see the sample queries below.
@@ -118,6 +122,8 @@ Ask Claude questions like these to explore your جستجوپذیر data:
 
 ## FAQ
 
+Browse the answers below for the most common setup and usage questions.
+
 <AccordionGroup>
   <Accordion title="Is my data secure when using MCP?">
     Yes. All communication between the MCP connector and جستجوپذیر servers uses TLS encryption. Your API key is stored only in your local config file and is never sent to Claude's servers — Claude receives the analytics results, not your credentials.
@@ -126,9 +132,12 @@ Ask Claude questions like these to explore your جستجوپذیر data:
     Claude Desktop is the primary tested client. Any client that correctly implements the Model Context Protocol open specification should also work. If you encounter compatibility issues with a specific client, contact support.
   </Accordion>
   <Accordion title="How do I get my API key?">
-    Log in to your جستجوپذیر dashboard and go to **Account Settings → API Keys**. Click **Generate New Key**, give it a descriptive name (for example, "MCP – Claude Desktop"), and copy the value immediately — it is only shown once.
+    Log in to your جستجوپذیر dashboard and go to **Settings → API Keys**. Click **Generate New Key**, give it a descriptive name (for example, "MCP – Claude Desktop"), and copy the value immediately — it is only shown once.
   </Accordion>
   <Accordion title="What data can I access via MCP?">
     Through MCP you can access all data available in your جستجوپذیر workspace: AI citation rates, per-page AI-readiness scores, share of AI voice, keyword-level ranking data, competitor citation comparisons, and historical trend data.
+  </Accordion>
+  <Accordion title="Why does npx prompt me to install a package?">
+    If you omit the `-y` flag from the `npx` command, npm asks for confirmation before installing the package — and Claude Desktop cannot answer that prompt, so the server fails to start. Always include `-y` in the `args` array as shown in the config example above.
   </Accordion>
 </AccordionGroup>
