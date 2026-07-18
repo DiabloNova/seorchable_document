@@ -1,0 +1,79 @@
+---
+title: Analyze How AI Models Rank Your Content
+sidebarTitle: LLM Analytics
+description: جستجوپذیر LLM Analytics shows how ChatGPT, Claude, and Perplexity rank and recommend your content — and what you can do to improve your position.
+---
+
+LLM Analytics is جستجوپذیر's newest capability — currently in beta and marked **جدید** (New) across the platform — and it goes deeper than citation counting. Where AEO Insights tracks *that* your content appears in AI results, LLM Analytics reveals *how* AI models evaluate and rank it. You get a model-by-model breakdown of the prompts driving traffic to your pages, your content's relative ranking position versus competitors, and a continuous stream of automated recommendations to help you climb.
+
+<Note>
+  LLM Analytics is currently in **public beta**. Core features are fully functional, but some metrics and model integrations are still being refined. Expect rapid improvements as the beta progresses — all feedback submitted through the in-app form goes directly to the product team.
+</Note>
+
+## Supported AI Models
+
+LLM Analytics currently monitors the following models out of the box:
+
+- **ChatGPT** (OpenAI GPT-4 and GPT-4o)
+- **Claude** (Anthropic Claude 3 family)
+- **Perplexity** (Perplexity Pro and standard)
+
+As new major models reach mainstream adoption, they are added to tracking automatically — you never need to configure new models manually.
+
+## What LLM Analytics Measures
+
+<CardGroup cols={2}>
+  <Card title="Prompt Analysis" icon="magnifying-glass">
+    Discover the exact user prompts that cause AI models to surface your content. See prompt volume, prompt categories, and which phrasing patterns your content responds to best.
+  </Card>
+  <Card title="Content Ranking" icon="list-ol">
+    See how AI models order your content relative to competitor pages when responding to the same prompts. Track your average ranking position over time and spot downward trends before they compound.
+  </Card>
+  <Card title="Keyword Relevance" icon="key">
+    Identify the keywords and topics that generate the most AI-driven traffic to your site. Use this data to prioritize content creation around high-impact terms your current pages don't yet cover well.
+  </Card>
+  <Card title="Performance Trends" icon="arrow-trend-up">
+    Chart your ranking and citation performance across days, weeks, and months. Correlate dips and improvements with specific content changes, algorithm updates, or competitor activity.
+  </Card>
+</CardGroup>
+
+## Automated Recommendations
+
+LLM Analytics doesn't just surface data — it tells you what to do with it. After analyzing your ranking patterns and comparing them against top-cited content in your niche, the platform generates prioritized, per-page recommendations such as:
+
+- Restructure this section to more directly answer common question patterns
+- Add a definition block for this term — AI models frequently cite definitional content for this query
+- Your competitor ranks higher here because their page covers sub-topic X, which yours omits
+
+Recommendations are refreshed automatically as new ranking data arrives, so your action list always reflects the current state of AI search — not last month's snapshot.
+
+## How to Read Your LLM Analytics Dashboard
+
+<Steps>
+  <Step title="Select a Model">
+    Open LLM Analytics and use the **Model** selector at the top of the page to choose **ChatGPT**, **Claude**, **Perplexity**, or **All Models** for an aggregated view. Start with a single model to get a clean baseline before comparing across models.
+  </Step>
+  <Step title="Review the Top Prompts Section">
+    Scroll to the **Top Prompts** panel. This lists the user queries most frequently driving AI responses that cite — or should be citing — your content. Click any prompt to see which of your pages appeared in the response and at what position.
+  </Step>
+  <Step title="Check Content Ranking Positions">
+    Move to the **Content Rankings** table. Each row shows a page URL, its average ranking position for the associated prompts, and a week-over-week position change indicator. Pages with declining positions are flagged in amber.
+  </Step>
+  <Step title="Act on Automated Recommendations">
+    Open the **Recommendations** tab in the right panel. Each recommendation is tagged with an estimated impact level (High / Medium / Low) and links directly to the relevant page in [Content Management](/features/content-management) so you can apply the suggested fix without leaving the workflow.
+  </Step>
+</Steps>
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="Which AI models are supported?">
+    ChatGPT, Claude, and Perplexity are fully supported at launch. Additional models — including Google Gemini and emerging open-weight models gaining traction — are added automatically as they reach sufficient usage thresholds. You can see the current full model list in **Settings → Tracked Models**.
+  </Accordion>
+  <Accordion title="How are rankings determined?">
+    جستجوپذیر simulates representative user prompts across each tracked AI model, collects the generated responses, and extracts source citations and referenced content. Your pages are then ranked by how frequently and how prominently they appear in those responses relative to competing pages covering the same topics.
+  </Accordion>
+  <Accordion title="How do I improve my ranking in AI results?">
+    Start by reviewing the automated recommendations for your lowest-ranking pages — these are the highest-leverage fixes. In general, AI models favor content that directly answers specific questions, uses clear structured formatting, carries topical authority signals (backlinks, author credentials, structured data), and covers a topic comprehensively rather than superficially. The [On-Page Optimization](/features/on-page-optimization) tool can help you address element-level issues on individual pages.
+  </Accordion>
+</AccordionGroup>

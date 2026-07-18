@@ -1,0 +1,141 @@
+---
+title: Frequently Asked Questions about جستجوپذیر
+sidebarTitle: FAQ
+description: Answers to common questions about جستجوپذیر features, pricing, data privacy, AI model support, and getting started with AI search optimization.
+---
+
+Find quick answers to the most common questions about جستجوپذیر (Seorchable) — from getting started and understanding your data to managing your account, integrations, and enterprise security. If you don't see your question answered here, reach out to our support team at [support@seorchable.com](mailto:support@seorchable.com).
+
+## Getting Started
+
+<AccordionGroup>
+  <Accordion title="What is جستجوپذیر and how does it work?">
+    جستجوپذیر (Seorchable) is an AI Search Optimization Platform that tracks and improves your brand's visibility across AI-powered search engines like ChatGPT, Claude, and Perplexity. It monitors when and how AI engines cite your content — called **AI citation events** — and surfaces actionable insights through features like AEO Insights, LLM Analytics, and On-Page Optimization. You connect your domain, and جستجوپذیر begins tracking your presence across 1.2B+ monitored searches, giving you the data you need to show up more often in AI-generated answers.
+  </Accordion>
+
+  <Accordion title="Is there a free trial?">
+    Yes. جستجوپذیر offers a free trial with no credit card required. You can sign up, connect your domain, and start exploring your AI citation data immediately — no payment details needed to get started.
+
+    <Tip>
+      Your trial gives you access to core features so you can evaluate the platform with your real data before committing to a paid plan.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="How long does setup take?">
+    Most users complete initial setup in under five minutes. The process involves:
+
+    1. Creating your account
+    2. Entering your domain
+    3. Verifying domain ownership
+    4. Selecting the AI engines you want to track
+
+    Once set up, جستجوپذیر begins collecting citation data automatically. Allow 24–48 hours for your first meaningful dataset to populate.
+  </Accordion>
+
+  <Accordion title="Do I need technical skills to use جستجوپذیر?">
+    No technical background is required to use the core platform. The dashboard, AEO Insights, and Content Management tools are designed for marketers, brand managers, and agency professionals. If you want to use advanced features like the API, MCP Integration, or SSO configuration, some technical familiarity is helpful — but detailed guides are available for each of those workflows.
+  </Accordion>
+</AccordionGroup>
+
+## Features & Data
+
+<AccordionGroup>
+  <Accordion title="Which AI models does جستجوپذیر track?">
+    جستجوپذیر currently tracks citations and visibility across:
+
+    - **ChatGPT** (OpenAI)
+    - **Claude** (Anthropic)
+    - **Perplexity**
+    - Additional AI search engines as they reach mainstream adoption
+
+    New model integrations are added continuously. Check the **LLM Analytics** section of your dashboard to see which models are actively tracked for your domain.
+  </Accordion>
+
+  <Accordion title="How often is data updated?">
+    Citation data is refreshed on a rolling basis throughout the day. Most users see updated metrics within a few hours of real-world AI search activity. Some lower-frequency AI engines may have slightly longer refresh cycles. You can view the last-updated timestamp directly on each analytics panel in your dashboard.
+  </Accordion>
+
+  <Accordion title="What is AEO (Answer Engine Optimization)?">
+    Answer Engine Optimization (AEO) is the practice of structuring and optimizing your content so that AI-powered answer engines are more likely to cite it in their responses. Unlike traditional SEO, which targets ranked links, AEO focuses on making your content the authoritative source that AI engines pull from when generating answers. جستجوپذیر's **AEO Insights** feature identifies which of your pages are already performing well and which need improvement to earn more AI citations.
+  </Accordion>
+
+  <Accordion title="What is an AI citation event?">
+    An AI citation event occurs when an AI search engine like ChatGPT, Claude, or Perplexity references or links to your content in a generated response. Each citation event is logged by جستجوپذیر with details including the AI engine, the query that triggered it, the page cited, and the timestamp. Tracking citation events helps you understand which content resonates with AI engines and where you have gaps.
+  </Accordion>
+
+  <Accordion title="Can I track competitor citations?">
+    Yes. جستجوپذیر lets you add competitor domains to monitor alongside your own. You can compare citation frequency, the AI engines that reference them, and the topics where they outperform you — giving you a clear picture of the competitive landscape in AI search and helping you identify content opportunities.
+  </Accordion>
+</AccordionGroup>
+
+## Account & Billing
+
+<AccordionGroup>
+  <Accordion title="How do I invite team members?">
+    To invite team members to your جستجوپذیر workspace:
+
+    1. Navigate to **Settings → Members**
+    2. Click **Invite Member**
+    3. Enter the team member's email address and select their role
+    4. Click **Send Invite**
+
+    They will receive an email invitation with a link to join your workspace. Enterprise plans support role-based access controls and SSO-provisioned accounts.
+  </Accordion>
+
+  <Accordion title="Can I switch plans?">
+    Yes, you can upgrade or downgrade your plan at any time from **Settings → Billing**. Upgrades take effect immediately. If you downgrade, the change applies at the start of your next billing cycle and you retain access to your current plan's features until then.
+
+    <Note>
+      Switching to a lower-tier plan may reduce the number of tracked domains, team seats, or historical data retention. Review the plan comparison before confirming a downgrade.
+    </Note>
+  </Accordion>
+
+  <Accordion title="How do I cancel my subscription?">
+    You can cancel your subscription at any time from **Settings → Billing → Cancel Plan**. After cancellation, your account remains active until the end of your current billing period, after which it reverts to a limited free tier. Your historical data is retained for 90 days, giving you time to export anything you need.
+  </Accordion>
+</AccordionGroup>
+
+## Integrations
+
+<AccordionGroup>
+  <Accordion title="What is MCP Protocol and how does it work with Seorchable?">
+    The **Model Context Protocol (MCP)** is an open standard that allows AI clients like Claude Desktop to connect to external tools and data sources. Seorchable's MCP Integration lets you query your citation data, run optimization prompts, and surface AEO insights directly inside Claude — without switching to the Seorchable dashboard.
+
+    To connect, you add Seorchable as an MCP server in your Claude Desktop configuration file using your Seorchable API key. Full setup instructions are available in the [MCP Integration guide](/integrations/mcp-protocol).
+
+    <Tip>
+      MCP integration is especially useful for agencies and power users who want to incorporate AI citation data into their existing AI-assisted workflows.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Can I export my data via API?">
+    Yes. Seorchable provides a REST API that lets you export citation data, analytics reports, and content performance metrics programmatically. You can generate an API key from **Settings → API Keys** and authenticate all requests with that key. Full API reference documentation is available in the [API keys guide](/account-setup).
+  </Accordion>
+
+  <Accordion title="Does Seorchable integrate with Google Search Console or other SEO tools?">
+    Seorchable is purpose-built for AI search visibility and does not currently offer a native integration with Google Search Console or traditional SEO platforms. However, you can export your Seorchable data via API and combine it with data from other tools in your analytics stack or BI platform. Native integrations with popular SEO tools are on the product roadmap.
+  </Accordion>
+</AccordionGroup>
+
+## Enterprise & Security
+
+<AccordionGroup>
+  <Accordion title="Is Seorchable SOC 2 compliant?">
+    Yes. Seorchable is SOC 2 compliant, meaning our security controls, data handling practices, and infrastructure have been independently audited against the Trust Services Criteria. Enterprise customers can request a copy of our SOC 2 report by contacting [support@seorchable.com](mailto:support@seorchable.com).
+
+    Seorchable is also GDPR compliant, with data processing agreements (DPAs) available for customers who require them.
+  </Accordion>
+
+  <Accordion title="Does Seorchable support SSO?">
+    Yes. Enterprise plans include Single Sign-On (SSO) support via:
+
+    - **SAML 2.0** — compatible with identity providers like Okta, Azure AD, and Google Workspace
+    - **OpenID Connect (OIDC)** — for modern OAuth 2.0-based identity workflows
+
+    SSO is configured in **Settings → Security → Single Sign-On**. Your IT administrator will need your IdP's metadata URL or certificate to complete the setup.
+  </Accordion>
+
+  <Accordion title="Where is my data stored?">
+    Seorchable stores customer data in secure cloud infrastructure with encryption at rest (AES-256) and in transit (TLS 1.2+). Enterprise customers can request information about specific data residency regions and retention policies by contacting the enterprise team. All data handling complies with GDPR and applicable data protection regulations.
+  </Accordion>
+</AccordionGroup>

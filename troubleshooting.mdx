@@ -1,0 +1,174 @@
+---
+title: "Troubleshoot Common جستجوپذیر Issues"
+sidebarTitle: Troubleshooting
+description: "Fix common issues with جستجوپذیر: missing data, tracking gaps, MCP connection problems, API errors, and account access issues with step-by-step solutions."
+---
+
+Before contacting support, check this guide first — most common جستجوپذیر issues have a quick fix. Each section below walks you through diagnosing and resolving the most frequent problems users encounter, from missing citation data to MCP connection errors and account access issues. If you work through the relevant steps and the issue persists, contact us at [support@seorchable.com](mailto:support@seorchable.com).
+
+## Data & Tracking Issues
+
+<AccordionGroup>
+  <Accordion title="My AI citations data is showing zero — what's wrong?">
+    A zero citation count usually means one of the following:
+
+    **1. Your site hasn't been indexed by AI engines yet.**
+    AI search engines need to crawl and index your content before citations can be tracked. If your domain is new or was recently added to جستجوپذیر, allow **24–48 hours** for initial data to appear.
+
+    **2. Domain verification is incomplete.**
+    Citation tracking only activates after your domain is successfully verified. Go to **Settings → Domains** and confirm your domain shows a **Verified** status. If it shows **Pending** or **Failed**, follow the verification instructions to re-add the DNS TXT record or meta tag.
+
+    **3. Your content isn't being surfaced by AI engines.**
+    If your site has low authority or lacks structured, answer-friendly content, AI engines may rarely cite it. Use **AEO Insights** to identify content improvement opportunities.
+
+    <Note>
+      If your domain was verified more than 48 hours ago and data is still zero, contact support with your domain name and account email so we can investigate.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Data stopped updating">
+    If your citation metrics haven't refreshed in more than 24 hours, work through these steps:
+
+    1. **Check your domain verification status.** Go to **Settings → Domains**. If your domain shows as **Unverified**, your DNS record or meta tag may have been removed or changed. Re-verify the domain to restore tracking.
+    2. **Confirm your plan is active.** A lapsed subscription can pause data collection. Go to **Settings → Billing** to check your plan status.
+    3. **Check the status page.** Visit [status.seorchable.com](https://status.seorchable.com) to see if there is an active incident affecting data ingestion.
+    4. **Refresh your dashboard.** Occasionally a hard browser refresh (Ctrl+Shift+R / Cmd+Shift+R) resolves a display cache issue without any underlying data problem.
+
+    <Warning>
+      If your domain verification lapses, citation data collection pauses and historical gaps cannot be backfilled. Re-verify as soon as possible to avoid data loss.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="I'm not seeing all AI models in my analytics">
+    Not all AI models crawl and cite content at the same frequency. Some models have lower crawl rates, which means citation events appear less often in your analytics. To check and adjust your view:
+
+    1. Open **LLM Analytics** in the sidebar.
+    2. Click the **Model** filter and confirm all models you want to track are selected.
+    3. Widen your date range — low-frequency models may show data over longer windows.
+    4. Check that the models you expect are listed as **Active** in **Settings → Tracking**.
+
+    If a model you expect to see is not listed at all, it may not yet be supported. New model integrations are added continuously — check the changelog or contact support to request a specific model.
+  </Accordion>
+</AccordionGroup>
+
+## MCP Integration Issues
+
+<AccordionGroup>
+  <Accordion title="Claude can't connect to the Seorchable MCP server">
+    If Claude Desktop fails to connect to the Seorchable MCP server, follow these steps in order:
+
+    **Step 1 — Verify your API key is valid.**
+    Go to **Settings → API Keys** in your Seorchable dashboard and confirm the key you are using is active and has not been revoked.
+
+    **Step 2 — Check your config file syntax.**
+    Open your Claude Desktop MCP configuration file and verify it matches the correct format exactly. A valid Seorchable MCP entry looks like this:
+
+    ```json
+    {
+      "mcpServers": {
+        "seorchable": {
+          "command": "npx",
+          "args": ["-y", "@seorchable/mcp-server"],
+          "env": {
+            "SEORCHABLE_API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+
+    Common mistakes include trailing commas, mismatched braces, or placing the key directly in `args` instead of `env`.
+
+    **Step 3 — Restart Claude Desktop.**
+    After editing the config file, fully quit and relaunch Claude Desktop. MCP server configurations are only loaded at startup.
+
+    **Step 4 — Check for Node.js.**
+    The Seorchable MCP server requires Node.js (v18 or later) to be installed on your machine. Run `node --version` in your terminal to confirm.
+
+    <Tip>
+      Claude Desktop's developer console (accessible from the Help menu) shows MCP connection logs, which can help pinpoint exactly where the connection is failing.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="API key rejected — 401 Unauthorized error">
+    A `401 Unauthorized` error means the API key you are using is either invalid, expired, or has been revoked. To resolve this:
+
+    1. Go to **Settings → API Keys** in your Seorchable dashboard.
+    2. Check whether the key you are using still appears in the list and shows an **Active** status.
+    3. If the key has been revoked or deleted, click **Create New Key** to generate a fresh one.
+    4. Copy the new key immediately — Seorchable only displays the full key at creation time.
+    5. Update your MCP config file or API client with the new key and restart as needed.
+
+    <Warning>
+      Never share your API key publicly or commit it to a code repository. If you suspect a key has been compromised, revoke it immediately from Settings and generate a replacement.
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## Account & Access Issues
+
+<AccordionGroup>
+  <Accordion title="I can't log in to my account">
+    Work through the following checks in order:
+
+    1. **Confirm your email address.** Make sure you are using the exact email address associated with your Seorchable account — check for typos or aliases.
+    2. **Reset your password.** Click **Forgot Password** on the login page and follow the reset link sent to your email.
+    3. **Check your SSO configuration (Enterprise).** If your organization uses SSO, log in via your identity provider rather than the email/password form. Contact your IT administrator if SSO login fails.
+    4. **Check for browser issues.** Try logging in from a private/incognito window or a different browser to rule out cached session conflicts.
+    5. **Check for account suspension.** A lapsed billing cycle can restrict access. Go to [billing.seorchable.com](https://billing.seorchable.com) to check your subscription status without requiring a full login.
+  </Accordion>
+
+  <Accordion title="A team member didn't receive their invite email">
+    If an invited team member hasn't received their invitation, try the following:
+
+    1. **Check the spam or junk folder.** Invite emails sometimes get caught by email filters. Ask the team member to search for an email from `noreply@seorchable.com`.
+    2. **Verify the email address.** Go to **Settings → Members** and confirm the address you entered is correct. If there is a typo, remove the pending invite and resend with the corrected address.
+    3. **Resend the invitation.** In **Settings → Members**, find the pending invite and click **Resend Invite**.
+    4. **Check domain-level email filtering.** Enterprise organizations with strict inbound email policies may need to whitelist `seorchable.com` as a sender.
+  </Accordion>
+
+  <Accordion title="I lost access to my admin account">
+    If you are locked out of your admin account and cannot recover access through the normal password reset flow:
+
+    1. Contact [support@seorchable.com](mailto:support@seorchable.com) from an email address associated with your organization's verified domain.
+    2. Include your account email address, your organization name, and a description of how access was lost.
+    3. Our team will verify your domain ownership before restoring access.
+
+    <Note>
+      For security reasons, Seorchable cannot transfer admin access without verifying domain ownership. Keep at least two admin accounts active in your workspace to avoid single points of failure.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+## Performance Issues
+
+<AccordionGroup>
+  <Accordion title="The dashboard is loading slowly">
+    If جستجوپذیر's dashboard feels sluggish, try these steps:
+
+    1. **Switch browsers.** Try Chrome, Firefox, or Edge. Some browser extensions (particularly ad blockers or security tools) can interfere with dashboard rendering.
+    2. **Clear your browser cache.** A stale cache can cause slow loads. Clear it via your browser settings and reload the page.
+    3. **Check your date range.** A very wide date range (e.g., 12+ months across many domains) requires more data to load. Try narrowing to a 30-day window to see if performance improves.
+    4. **Check your internet connection.** Run a quick speed test to rule out network issues on your end.
+    5. **Check the Seorchable status page.** Visit [status.seorchable.com](https://status.seorchable.com) to see if a platform-wide performance issue is affecting all users.
+  </Accordion>
+
+  <Accordion title="Reports are taking a long time to generate">
+    Report generation time scales with the amount of data being processed. If your reports are slow:
+
+    1. **Narrow your date range.** Reports covering more than 90 days can take significantly longer to compile. Try generating reports in **30-day windows** and merging the results if needed.
+    2. **Reduce the number of domains.** If you are reporting across many tracked domains simultaneously, try generating separate reports per domain.
+    3. **Schedule reports during off-peak hours.** Large reports run faster when overall platform load is lower — typically early mornings or weekends.
+    4. **Use the API for bulk exports.** For very large datasets, the Seorchable REST API is more efficient than the dashboard report builder. See the [account setup guide](/account-setup) for export endpoints.
+
+    <Tip>
+      Saved report templates with pre-set 30-day rolling windows are the fastest way to generate consistent, on-demand performance snapshots without waiting for large queries to process.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Note>
+  If you've worked through the relevant steps above and your issue is still unresolved, contact our support team at [support@seorchable.com](mailto:support@seorchable.com). To help us resolve your issue faster, include your **account email**, **domain name**, a **description of the problem**, and the **steps you've already tried**.
+</Note>

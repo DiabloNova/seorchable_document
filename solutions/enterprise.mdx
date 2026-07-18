@@ -1,0 +1,81 @@
+---
+title: Enterprise AI Visibility with SSO and Role Management
+sidebarTitle: Enterprise
+description: جستجوپذیر Enterprise offers SSO via SAML 2.0 and OpenID Connect, fine-grained role management, SOC 2 compliance, and dedicated support for large organizations.
+---
+
+Large organizations need more than a tracking dashboard — they need a governance framework that fits into existing security infrastructure, respects established access controls, and satisfies the compliance obligations of enterprise IT and legal teams. جستجوپذیر Enterprise delivers all of that alongside the full AI search visibility and optimization capabilities your teams need to compete in an AI-first search landscape.
+
+## Security and Compliance
+
+<CardGroup cols={2}>
+  <Card title="SSO via SAML 2.0 and OpenID Connect" icon="key-skeleton">
+    Integrate جستجوپذیر with your existing identity provider — Okta, Azure AD, Google Workspace, or any SAML 2.0 / OIDC-compatible IdP — so employees log in with their corporate credentials and provisioning is managed centrally.
+  </Card>
+  <Card title="End-to-End Encryption" icon="lock">
+    All data in transit is encrypted with TLS 1.3. All data at rest is encrypted using AES-256. No plain-text storage of analytics data or API credentials at any point in the pipeline.
+  </Card>
+  <Card title="SOC 2 Compliance" icon="shield-check">
+    جستجوپذیر maintains SOC 2 Type II certification, providing independent assurance of our security, availability, and confidentiality controls. Reports are available to enterprise customers under NDA.
+  </Card>
+  <Card title="GDPR Compliance" icon="file-shield">
+    Data residency options, Data Processing Agreements (DPA), and automated data-subject request tooling ensure you can meet GDPR and regional data-protection obligations without custom engineering.
+  </Card>
+  <Card title="Audit Logs" icon="list-check">
+    Every user action in the platform — logins, exports, configuration changes, API key creation — is recorded in an immutable audit log, exportable to your SIEM or compliance toolchain.
+  </Card>
+</CardGroup>
+
+## Team Management
+
+### Roles
+
+جستجوپذیر Enterprise ships with four built-in roles, each scoped to the level of access appropriate for that function:
+
+| Role | What they can do |
+|---|---|
+| **Admin** | Full platform access: manage workspaces, create/delete users, configure SSO, manage billing, and view all audit logs. |
+| **Manager** | Create and configure workspaces and keyword tracking; generate and share reports; manage Analyst and Viewer access within their assigned workspaces. |
+| **Analyst** | View all data within assigned workspaces; run audits; export reports; configure AI Agent alerts. Cannot manage users or billing. |
+| **Viewer** | Read-only access to dashboards and reports within assigned workspaces. Cannot export data or modify any settings. |
+
+Custom roles with granular permission overrides are available on request — contact your account manager to discuss your organisation's access model.
+
+### API Key Management
+
+Create and scope API keys per integration use case from **Settings → API Keys**. Each key can be restricted to specific workspaces, limited to read-only or read-write operations, and given an expiry date. Rotate or revoke keys instantly without affecting other integrations.
+
+### Organisation Workspace Structure
+
+Enterprise accounts support a hierarchical workspace structure: an organisation-level parent workspace containing multiple child workspaces scoped to business units, product lines, regional markets, or individual brands. Admins see the full hierarchy; team members see only the workspaces assigned to their role.
+
+## Enterprise Onboarding
+
+<Steps>
+  <Step title="Contact sales">
+    Reach out to the enterprise sales team at [enterprise@seorchable.com](mailto:enterprise@seorchable.com) or book a discovery call. Share your organisation size, primary use case, and any compliance or security requirements so the team can prepare a tailored proposal.
+  </Step>
+  <Step title="Onboarding specialist assigned">
+    Once your Enterprise plan is confirmed, a dedicated onboarding specialist is assigned to your account. They coordinate all setup activities and serve as your single point of contact through go-live.
+  </Step>
+  <Step title="SSO configuration">
+    Your onboarding specialist works with your IT team to configure the SAML 2.0 or OIDC integration with your identity provider. Typical configuration takes less than one business day. A test tenant is available so your IT team can validate SSO before production rollout.
+  </Step>
+  <Step title="Role and team structure setup">
+    Define your organisation's workspace hierarchy and map internal job functions to جستجوپذیر roles. Your onboarding specialist can advise on access models based on your org chart and data governance requirements.
+  </Step>
+  <Step title="Team training sessions">
+    Your onboarding specialist delivers live training sessions tailored to each role group — a technical session for Admins covering API access and audit logs, and a workflow session for Analysts and Managers covering daily operations, reporting, and the AI Agent.
+  </Step>
+  <Step title="Go live">
+    Flip the switch. Your onboarding specialist monitors the first week of production usage and resolves any teething issues. Hypercare support continues for 30 days post-launch.
+  </Step>
+</Steps>
+
+<Note>
+  Enterprise customers receive 24/7 priority support with a guaranteed first-response SLA, plus a named dedicated account manager for strategic guidance, renewal planning, and escalation handling.
+</Note>
+
+<Tip>
+  Connect the AI Agent's webhook output to your enterprise monitoring and alerting stack — Splunk, PagerDuty, Datadog, or a custom SIEM — to incorporate AI search visibility signals into your existing operational dashboards. See the [AI Agent documentation](/integrations/ai-agent#webhook-payload-format) for the full webhook payload schema.
+</Tip>

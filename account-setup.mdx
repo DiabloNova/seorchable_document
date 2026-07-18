@@ -1,0 +1,102 @@
+---
+title: Set Up Your جستجوپذیر Account and Workspace
+sidebarTitle: Account Setup
+description: Configure your جستجوپذیر account, invite team members, set up notifications, and manage API keys for automated integrations.
+---
+
+After creating your جستجوپذیر account, a few minutes of configuration will make your workspace faster, more secure, and ready for collaboration. This page covers profile settings, team management, API key creation, and notification preferences — everything you need before you start sharing access or building integrations against the جستجوپذیر API.
+
+## Profile and workspace settings
+
+Update your personal and workspace details from **Settings → Profile**:
+
+- **Display name and email** — Used in reports, exports, and notification emails. Keep your work email here so teammates can identify you in shared workspaces.
+- **Workspace name** — Appears in shared dashboards and white-label reports. Set it to your company or agency name.
+- **Default timezone** — Determines how timestamps appear across your reports and alerts. Set this before your first tracking run to avoid offset confusion.
+- **Language preference** — The dashboard UI supports Persian (Farsi) and English. Your preference here does not affect the language of AI engine queries.
+
+Save any changes by clicking **Update Profile** at the bottom of the form.
+
+## Inviting team members
+
+Bring your colleagues into your workspace from **Settings → Team**. Click **Invite Member**, enter their email address, and assign one of the three available roles:
+
+| Role | Permissions |
+|---|---|
+| **Admin** | Full access to all settings, billing, API keys, and workspace data. Can invite and remove members. |
+| **Editor** | Can add and configure websites, manage keywords, edit content recommendations, and configure alerts. Cannot access billing or delete the workspace. |
+| **Viewer** | Read-only access to all dashboards and reports. Cannot modify settings, add sites, or generate API keys. |
+
+Invited members receive an email with a magic link that expires after 48 hours. Resend an invitation from the **Team** settings page if a link expires before the recipient accepts it.
+
+<Note>
+  Each workspace on the Growth and Enterprise plans supports unlimited team members. The Starter plan allows up to three seats. Upgrade at any time from **Settings → Billing**.
+</Note>
+
+## API key management
+
+The جستجوپذیر REST API lets you pull visibility data, trigger report exports, and push content updates programmatically. All API requests require a valid API key.
+
+### Create an API key
+
+1. Navigate to **Settings → API Keys**.
+2. Click **Generate New Key**.
+3. Give the key a descriptive name (e.g., `production-integration` or `ci-pipeline`).
+4. Select the scope: **Read**, **Read & Write**, or **Admin** (Admin scope includes key management endpoints).
+5. Click **Create Key** and copy the key value immediately — it is shown only once.
+
+Store your API key in your secrets manager or environment variables. Never commit it to source control.
+
+### Authenticate API requests
+
+Include your API key in the `Authorization` header of every request as a Bearer token:
+
+```bash
+curl https://api.seorchable.com/v1/visibility \
+  --request GET \
+  --header "Authorization: Bearer YOUR_API_KEY" \
+  --header "Content-Type: application/json"
+```
+
+A successful response returns a `200 OK` with a JSON body. An invalid or expired key returns `401 Unauthorized`.
+
+### Example: fetch visibility summary for a domain
+
+```bash
+curl https://api.seorchable.com/v1/domains/example.com/visibility-summary \
+  --request GET \
+  --header "Authorization: Bearer YOUR_API_KEY" \
+  --header "Content-Type: application/json"
+```
+
+```json
+{
+  "domain": "example.com",
+  "period": "last_30_days",
+  "citation_count": 1842,
+  "citation_share_pct": 14.3,
+  "top_cited_pages": [
+    { "url": "/blog/ai-search-guide", "citations": 312 },
+    { "url": "/products/analytics", "citations": 278 }
+  ]
+}
+```
+
+<Warning>
+  Rotate your API keys immediately if you suspect a key has been exposed. Go to **Settings → API Keys**, click the key you want to revoke, and select **Revoke Key**. Revoking a key is permanent and will break any integration still using it until you replace the key value.
+</Warning>
+
+## Notification preferences
+
+Configure how and when جستجوپذیر alerts you to changes from **Settings → Notifications**:
+
+- **Ranking Change Alerts** — Set a percentage threshold for citation-share movement. Alerts fire when your visibility rises or falls beyond that threshold within a 24-hour window. Recommended starting threshold: **10%**.
+- **New Competitor Activity** — Get notified when a tracked competitor domain significantly increases its AI citation share.
+- **Weekly Digest** — Receive a weekly email summarizing your citation trends, top-performing pages, and recommended actions.
+- **Delivery channel** — Route alerts to email, Slack (via webhook), or any endpoint that accepts a POST request.
+
+To update thresholds, navigate to **Settings → Notifications**, adjust the sliders for each alert type, and click **Save Preferences**.
+
+<Note>
+  If your organization requires single sign-on (SSO) via an identity provider such as Okta, Azure AD, or Google Workspace, see the [Enterprise SSO configuration guide](/solutions/enterprise) to enable SAML 2.0 or OIDC authentication for your workspace.
+</Note>

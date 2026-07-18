@@ -1,0 +1,134 @@
+---
+title: Connect جستجوپذیر to Claude via MCP Protocol
+sidebarTitle: MCP Protocol
+description: Use the Model Context Protocol (MCP) to integrate جستجوپذیر analytics data directly into Claude and other MCP-compatible AI clients for live data access.
+---
+
+The Model Context Protocol (MCP) is an open standard that lets external tools supply live data and capabilities to AI clients like Claude. By connecting جستجوپذیر through MCP, you can query your AI search analytics, pull real-time ranking data, and trigger analysis workflows directly from a Claude conversation — no copy-pasting dashboards required.
+
+## What You Can Do with MCP
+
+<CardGroup cols={2}>
+  <Card title="Query Live Analytics" icon="chart-line">
+    Ask Claude questions about your AI visibility data and receive up-to-the-minute answers pulled straight from جستجوپذیر.
+  </Card>
+  <Card title="Automate Reporting" icon="file-chart-column">
+    Build natural-language reporting workflows that fetch, summarize, and format your analytics on demand.
+  </Card>
+  <Card title="Build Custom Pipelines" icon="code-branch">
+    Combine جستجوپذیر data with other MCP tools to create bespoke AI analysis pipelines tailored to your brand's needs.
+  </Card>
+  <Card title="Access Rankings Anywhere" icon="globe">
+    Retrieve real-time citation and ranking data from any MCP-compatible client, not just Claude Desktop.
+  </Card>
+</CardGroup>
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- An active جستجوپذیر account
+- A جستجوپذیر API key (generated in **Account Settings → API Keys**)
+- Claude Desktop (v0.10 or later) or another MCP-compatible client installed
+
+## Set Up the MCP Integration
+
+<Steps>
+  <Step title="Get your API key">
+    Open your جستجوپذیر dashboard, navigate to **Account Settings → API Keys**, and click **Generate New Key**. Copy the key — you will need it in the next step.
+  </Step>
+  <Step title="Install the جستجوپذیر MCP connector">
+    Run the following command in your terminal to install the connector package:
+
+    ```bash
+    npx @seorchable/mcp-connector install
+    ```
+
+    The installer places the server binary and a default config template in `~/.seorchable/mcp/`.
+  </Step>
+  <Step title="Add the MCP server to your Claude Desktop config">
+    Open your Claude Desktop configuration file (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS) and add the `seorchable` entry under `mcp_servers`:
+
+    <CodeGroup>
+      ```json claude_desktop_config.json
+      {
+        "mcp_servers": {
+          "seorchable": {
+            "command": "npx",
+            "args": ["@seorchable/mcp-connector", "serve"],
+            "env": {
+              "SEORCHABLE_API_KEY": "sk_live_your_api_key_here"
+            }
+          }
+        }
+      }
+      ```
+    </CodeGroup>
+
+    Save the file and restart Claude Desktop.
+  </Step>
+  <Step title="Test the connection">
+    In a new Claude conversation, type:
+
+    ```
+    Use the Seorchable tool to show my account status.
+    ```
+
+    Claude should respond with your workspace name and current tracking summary. If you see a connection error, double-check that the `SEORCHABLE_API_KEY` value is correct and that Claude Desktop has been restarted.
+  </Step>
+  <Step title="Start querying your analytics data">
+    You're live. Try asking Claude natural-language questions about your AI search performance — see the sample queries below.
+  </Step>
+</Steps>
+
+## Sample MCP Queries
+
+Ask Claude questions like these to explore your جستجوپذیر data:
+
+<CodeGroup>
+  ```text Top cited pages
+  What are my top cited pages this week?
+  ```
+
+  ```text Competitor comparison
+  Compare my AI citation rate to my top 3 competitors for the keyword "project management software".
+  ```
+
+  ```text Content gaps
+  Which of my pages have the lowest AI-readiness score and what changes would improve them?
+  ```
+
+  ```text Trend summary
+  Summarise how my share of AI voice has changed over the last 30 days.
+  ```
+</CodeGroup>
+
+## Supported MCP Clients
+
+جستجوپذیر's MCP connector works with any client that implements the Model Context Protocol specification:
+
+| Client | Support level |
+|---|---|
+| Claude Desktop | Fully supported and tested |
+| Any MCP-compatible client | Supported via standard MCP server protocol |
+
+<Note>
+  The MCP connector exposes the same data available through the جستجوپذیر REST API. For programmatic access or bulk data exports, see the full [account setup guide](/account-setup).
+</Note>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Is my data secure when using MCP?">
+    Yes. All communication between the MCP connector and جستجوپذیر servers uses TLS encryption. Your API key is stored only in your local config file and is never sent to Claude's servers — Claude receives the analytics results, not your credentials.
+  </Accordion>
+  <Accordion title="Which MCP clients are supported?">
+    Claude Desktop is the primary tested client. Any client that correctly implements the Model Context Protocol open specification should also work. If you encounter compatibility issues with a specific client, contact support.
+  </Accordion>
+  <Accordion title="How do I get my API key?">
+    Log in to your جستجوپذیر dashboard and go to **Account Settings → API Keys**. Click **Generate New Key**, give it a descriptive name (for example, "MCP – Claude Desktop"), and copy the value immediately — it is only shown once.
+  </Accordion>
+  <Accordion title="What data can I access via MCP?">
+    Through MCP you can access all data available in your جستجوپذیر workspace: AI citation rates, per-page AI-readiness scores, share of AI voice, keyword-level ranking data, competitor citation comparisons, and historical trend data.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,62 @@
+---
+title: Improve Page Elements for Better AI Visibility
+sidebarTitle: On-Page
+description: جستجوپذیر On-Page Optimization analyzes your titles, meta descriptions, and headings, then suggests element-level changes to boost AI search citations.
+---
+
+AI search engines don't read your pages the way humans do — they parse specific structural signals to decide whether your content is authoritative and relevant enough to cite. جستجوپذیر's On-Page Optimization feature runs a systematic element-by-element analysis of any URL you submit, scores each component against AI-readiness benchmarks, and gives you a prioritized fix list you can act on immediately. No guesswork, no generic checklists — just targeted changes tied directly to how AI models evaluate your pages.
+
+## Elements Analyzed
+
+<CardGroup cols={2}>
+  <Card title="Title Tags" icon="heading">
+    Your `<title>` element is one of the first signals an AI model evaluates. جستجوپذیر checks character length, primary keyword presence, uniqueness across your site, and alignment with common user prompts in your niche.
+  </Card>
+  <Card title="Meta Descriptions" icon="align-left">
+    While meta descriptions don't directly influence rankings, they affect whether AI models treat your page as a coherent, trustworthy source. The analyzer checks length, keyword inclusion, and whether the description accurately summarizes the page content.
+  </Card>
+  <Card title="H1–H3 Headings" icon="list">
+    Heading hierarchy is a critical structural signal. جستجوپذیر verifies that you have exactly one H1, that it contains your primary topic keyword, and that subsequent H2 and H3 headings create a logical, scannable outline that AI models can use to locate specific answers within your content.
+  </Card>
+  <Card title="Structured Data / Schema Markup" icon="code">
+    Schema markup tells AI engines precisely what type of content a page contains. The analyzer checks for the presence and validity of relevant schema types (Article, FAQPage, HowTo, Product, BreadcrumbList) and flags missing or malformed markup.
+  </Card>
+  <Card title="Internal Linking Patterns" icon="link">
+    Internal links help AI models understand your site's topical authority and content hierarchy. جستجوپذیر analyzes whether the page links to and from semantically related content, and flags orphaned pages that receive no internal links — a common reason pages are overlooked by AI citation engines.
+  </Card>
+</CardGroup>
+
+## How Optimization Scores Work
+
+Each element receives an individual score from 0–100 based on how closely it matches the patterns observed in pages that earn high AI citation rates in your industry. Scores are calculated by comparing your element against:
+
+- **Best-practice thresholds** — Character limits, required attributes, schema validity rules
+- **Competitor benchmarks** — How pages that outrank yours for the same prompts handle the same element
+- **Citation correlation data** — Which element patterns show the strongest statistical association with AI citations in your niche
+
+The scores roll up into a single **AI Readiness Score** for the page, with each element's contribution weighted by its overall impact on citation performance. Titles and H1s carry the highest weight; meta descriptions and internal links carry lower but still meaningful weight.
+
+## Run an On-Page Analysis
+
+<Steps>
+  <Step title="Enter Your Page URL">
+    Go to **On-Page Optimization** in your dashboard and paste the full URL of the page you want to analyze into the input field. Click **Analyze Page** to start the scan. Results are typically ready within 30 seconds.
+  </Step>
+  <Step title="View Element-by-Element Breakdown">
+    The results screen displays a scored card for each element: title tag, meta description, H1–H3 headings, structured data, and internal links. Each card shows the current value, the score, a plain-language explanation of what's wrong (if anything), and a specific suggested fix.
+  </Step>
+  <Step title="Apply Prioritized Fixes">
+    Elements are sorted by impact — highest impact fixes appear first. Work through the list from top to bottom, making the suggested edits in your CMS. For schema markup, جستجوپذیر provides a ready-to-copy JSON-LD snippet you can paste directly into your page's `<head>`.
+  </Step>
+  <Step title="Re-Scan to Verify Improvements">
+    After publishing your changes, return to On-Page Optimization and re-analyze the same URL. Your updated scores will reflect the changes, and any remaining issues will surface in an updated prioritized list. Repeat until the page reaches your target AI Readiness Score.
+  </Step>
+</Steps>
+
+<Tip>
+  Start every on-page audit by fixing the **title tag and H1** first. These two elements have the highest impact on AI citation rates because they are the primary signals models use to match your page to a user's query. A misaligned or keyword-thin title will suppress citation performance regardless of how good the body content is. Resolve both before moving on to meta descriptions, schema, or internal links.
+</Tip>
+
+<Note>
+  On-Page Optimization focuses on element-level changes to individual pages. For a broader view of content quality, depth, and overall AI readiness across your entire site, use [Content Management](/features/content-management). The two features are designed to work together — Content Management identifies which pages need attention; On-Page Optimization tells you exactly what to change on each one.
+</Note>

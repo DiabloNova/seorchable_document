@@ -1,0 +1,81 @@
+{
+  "projectType": "saas",
+  "projectName": "جستجوپذیر",
+  "projectDescription": "جستجوپذیر یک پلتفرم بهینه‌سازی جستجوی هوش مصنوعی است که به برندها، آژانس‌ها و سازمان‌ها کمک می‌کند دیدپذیری خود را در موتورهای جستجوی هوش مصنوعی مانند ChatGPT و Claude ردیابی، تحلیل و بهبود دهند.",
+  "theme": "willow",
+  "primaryColor": "#7c7c7c",
+  "lightColor": "#050505",
+  "darkColor": "#bcbcbc",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "account-setup"
+            ]
+          },
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/aeo-insights",
+              "features/llm-analytics",
+              "features/content-management",
+              "features/on-page-optimization",
+              "features/prompt-library",
+              "features/shopping-analytics"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/mcp-protocol",
+              "integrations/ai-agent"
+            ]
+          },
+          {
+            "group": "Solutions",
+            "pages": [
+              "solutions/brands",
+              "solutions/agencies",
+              "solutions/enterprise"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "AI Visibility Tracking — monitor how your brand appears in ChatGPT, Claude, Perplexity and other AI search engines",
+    "LLM Analytics — understand how large language models rank and recommend your content",
+    "AEO Insights — track AI citation events and see exactly which pages get cited",
+    "Content Management & Optimization — optimize content for AI discoverability with actionable recommendations",
+    "On-Page Optimization — improve titles, descriptions, and headings for AI search",
+    "Prompt Library — organize and research prompts; find which prompts drive best results",
+    "AI Shopping Analytics — track product recommendations in AI shopping results",
+    "MCP Protocol Integration — connect Seorchable data to Claude and other MCP clients",
+    "AI Search Agent — automated AI agent that continuously analyzes your search data",
+    "Competitive Analysis — compare your AI search performance against competitors",
+    "Real-Time Alerts — instant notifications when rankings change or new opportunities arise",
+    "Enterprise SSO & Role Management — SAML 2.0, OpenID Connect, fine-grained role access",
+    "Multi-Account Management — manage hundreds of client accounts from one dashboard"
+  ],
+  "publicApiSurface": [
+    "MCP Protocol endpoint — connect Seorchable analytics to Claude and MCP clients",
+    "API Key management — create and manage API keys for automated integrations",
+    "Analytics data API — access real-time visibility and ranking data",
+    "Competitive analysis data API",
+    "Content optimization recommendations API"
+  ]
+}

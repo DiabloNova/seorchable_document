@@ -1,0 +1,114 @@
+---
+title: Automate Analysis with the جستجوپذیر AI Agent
+sidebarTitle: AI Agent
+description: The جستجوپذیر AI Agent continuously monitors your AI search performance, surfaces key insights automatically, and sends alerts when important changes occur.
+---
+
+The جستجوپذیر AI Agent is an automated analysis engine built directly into your dashboard. Once enabled, it runs in the background around the clock — scanning your AI visibility data, detecting meaningful shifts in your rankings and citations, and surfacing actionable insights without you needing to log in and check manually. Think of it as a vigilant analyst that never sleeps and never misses a change.
+
+## What the AI Agent Does
+
+<CardGroup cols={2}>
+  <Card title="Continuous Monitoring" icon="radar">
+    Scans your AI visibility across ChatGPT, Claude, and Perplexity 24/7, logging every citation event and ranking movement as it happens.
+  </Card>
+  <Card title="Insight Surfacing" icon="lightbulb">
+    Identifies positive trends (new citation opportunities, rising share of AI voice) and negative trends (ranking drops, lost citations) before they become problems.
+  </Card>
+  <Card title="Automated Alerts" icon="bell">
+    Notifies you the moment a significant ranking change, citation spike, or content-gap opportunity crosses your configured thresholds.
+  </Card>
+  <Card title="Competitor Monitoring" icon="chart-bar">
+    Watches your defined competitors and alerts you when they gain or lose AI citations — so you can react faster than they can.
+  </Card>
+</CardGroup>
+
+## Enable the AI Agent
+
+<Steps>
+  <Step title="Open AI Agent settings">
+    In your جستجوپذیر dashboard, go to **Settings → AI Agent**.
+  </Step>
+  <Step title="Configure monitoring frequency">
+    Choose how often the agent scans your data:
+
+    - **Real-time** — continuous scanning, alerts within minutes of a change
+    - **Daily** — one full scan per day, ideal for stable campaigns
+    - **Weekly** — summary scan each week, best for long-term trend tracking
+  </Step>
+  <Step title="Set alert thresholds">
+    Define the sensitivity of your alerts. For example:
+
+    - Alert when my ranking for a tracked keyword drops **more than 10%**
+    - Alert when a competitor's citation rate rises **more than 15%** in a 7-day window
+    - Alert when a new high-intent topic appears where I have **zero citations**
+  </Step>
+  <Step title="Choose notification channels">
+    Select where the agent sends its alerts:
+
+    - **Email** — delivered to any address on your account
+    - **Slack** — connect your workspace via OAuth in **Settings → Integrations**
+    - **Webhook** — POST the alert payload to any URL (see the payload format below)
+  </Step>
+  <Step title="Enable the agent">
+    Toggle the agent on and click **Save**. The agent begins its first scan immediately. You will receive a confirmation notification on your chosen channel once the initial scan is complete.
+  </Step>
+</Steps>
+
+<Tip>
+  When you first enable the AI Agent, set your thresholds lower than you think you need them. A week of alerts — even noisy ones — will quickly show you the normal variance range for your data, and you can raise the thresholds with confidence once you understand the baseline.
+</Tip>
+
+## Alert Types
+
+The AI Agent generates three categories of alerts:
+
+**Ranking change alerts** notify you when a tracked keyword's AI citation position moves beyond your configured threshold — either upward (good news) or downward (action required).
+
+**New citation opportunity alerts** fire when the agent detects a high-intent topic or question that competitors are being cited for but your content does not yet address.
+
+**Competitor move alerts** trigger when a monitored competitor gains a significant number of new AI citations or loses a substantial share of its current citations, signalling a strategic shift worth reacting to.
+
+## Webhook Payload Format
+
+When you configure a webhook notification channel, the AI Agent posts a JSON payload to your endpoint for every alert. Use this format to build integrations with Slack (custom), PagerDuty, Zapier, or any internal tooling:
+
+```json
+{
+  "event": "ranking_change",
+  "timestamp": "2024-11-15T09:42:00Z",
+  "workspace_id": "ws_abc123",
+  "alert": {
+    "type": "ranking_drop",
+    "severity": "high",
+    "keyword": "project management software",
+    "previous_rank": 2,
+    "current_rank": 7,
+    "change_pct": -28.5,
+    "ai_engine": "ChatGPT",
+    "threshold_pct": 10
+  },
+  "page": {
+    "url": "https://example.com/blog/project-management",
+    "ai_readiness_score": 64,
+    "citation_rate_7d": 0.12
+  },
+  "recommended_action": "Review page content against the AI-readiness checklist and update structured data."
+}
+```
+
+Respond to the webhook with HTTP `200` to acknowledge receipt. The agent retries failed deliveries up to three times with exponential back-off.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="How is the AI Agent different from manual dashboard checks?">
+    Manual dashboard checks show you a snapshot of the moment you log in. The AI Agent monitors continuously, retains historical context, and applies statistical analysis to determine whether a change is meaningful noise or a genuine trend — then it comes to you. You avoid the cognitive overhead of deciding what to look for, and you get notified only when something genuinely warrants attention.
+  </Accordion>
+  <Accordion title="Can I customize which metrics the agent monitors?">
+    Yes. From **Settings → AI Agent → Monitored Metrics**, you can enable or disable monitoring for individual metrics including citation rate, share of AI voice, AI-readiness score, keyword-level ranking, and competitor citation counts. You can also scope monitoring to specific pages, keyword groups, or domains.
+  </Accordion>
+  <Accordion title="How do I connect the agent to Slack?">
+    Go to **Settings → Integrations → Slack** and click **Connect Workspace**. Authorise جستجوپذیر in the Slack OAuth flow, then choose which channel should receive agent alerts. Once connected, return to **Settings → AI Agent** and select **Slack** as a notification channel.
+  </Accordion>
+</AccordionGroup>
